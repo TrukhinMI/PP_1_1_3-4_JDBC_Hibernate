@@ -12,13 +12,14 @@ public class Util {
     private static final String PASSWORD = "root";
 
 
+
     public static Connection openConnection()  {
         Connection connection = null;
 
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Ok");
         } catch (SQLException e) {
+            System.out.printf("Ошибка БД");
             e.printStackTrace();
         }
 
