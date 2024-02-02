@@ -11,11 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-    public UserDaoJDBCImpl() {
-    }
 
     private final Connection connection = Util.openConnection();
-
 
     public void createUsersTable() {
         try {
