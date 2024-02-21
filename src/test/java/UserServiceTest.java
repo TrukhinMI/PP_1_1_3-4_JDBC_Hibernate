@@ -48,7 +48,6 @@ public class UserServiceTest {
             ) {
                 Assert.fail("User был некорректно добавлен в базу данных");
             }
-
         } catch (Exception e) {
             Assert.fail("Во время тестирования сохранения пользователя произошло исключение\n" + e);
         }
