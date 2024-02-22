@@ -16,8 +16,9 @@ public class Util {
     private static final String USER = "root";
     private static final String PASSWORD = "root";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DIALECT = "org.hibernate.dialect.MySQLDialect";
+    private static final String DIALECT = "org.hibernate.dialect.MySQL8Dialect";
     private static final String SHOW_SQL = "true";
+    private static final String HBM2DDL_AUTO = "update";
 
     private static SessionFactory factory;
 
@@ -32,6 +33,7 @@ public class Util {
                         .setProperty("hibernate.dialect", DIALECT)
                         .setProperty("hibernate.show_sql", SHOW_SQL)
                         .setProperty("hibernate.current_session_context_class", "thread")
+                        .setProperty("hibernate.hbm2ddl.auto", HBM2DDL_AUTO)
                         .addAnnotatedClass(User.class)
                         .buildSessionFactory();
                 System.out.println("Done!");
