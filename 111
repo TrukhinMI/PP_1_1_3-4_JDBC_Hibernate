@@ -1,49 +1,42 @@
-public class AuthPage {
-    private final SelenideElement welcomeMessage = $(byId("kc-page-title"));
-    private final SelenideElement loginField = $(byId("username"));
-    private final SelenideElement passwordField = $(byId("password"));
-    private final SelenideElement enterButton = $(byXpath("//input[contains(@class, 'button')]"));
-    private final SelenideElement alertMessage = $(byXpath("//div[contains(@class, 'alert')]//span[text()='Неправильное имя пользователя или пароль.']"));
+public class MainPage {
+    private final SelenideElement username = $(byXpath("//span[contains(text(), 'Автотест Автотестовый')]"));
+    private final SelenideElement exitButton = $(byXpath("//button[@name='logout']"));
+    private final SelenideElement newApplicationButton = $(byXpath("//button[@name='new-application']"));
+    private final SelenideElement backButton = $(byXpath("//button[@name='back']"));
+    private final SelenideElement nextButton = $(byXpath("//button[@name='proceed']"));
+    private final SelenideElement findButton = $(byXpath("//button[@name='search-application']"));
 
-    public SelenideElement inputUsername = $x("//*[@id='username']");
-
-
-    @Step("Ввод корректного логина")
-    public void correctFulfillLoginField() {
-        loginField.sendKeys(new PropertyLoader("CarLoan/configCarLoan").loadProperty("username"));
+    @Step("Нажатие кнопки \"Найти\"")
+    public void pressFindButton() {
+        findButton.click();
     }
 
-    @Step("Ввод корректного пароля")
-    public void correctFulfillPasswordField() {
-        passwordField.sendKeys(new PropertyLoader("CarLoan/configCarLoan").loadProperty("password"));
+    @Step("Выход из учётной записи")
+    public void exitAccount() {
+        exitButton.click();
     }
 
-    @Step("Ввод некорректного логина")
-    public void incorrectFulfillLoginField(String incorrectLogin) {
-        loginField.sendKeys(incorrectLogin);
+    @Step("Нажатие кнопки \"Новая заявка\"")
+    public void pressNewApplicationButton() {
+        newApplicationButton.click();
     }
 
-    @Step("Ввод некорректного пароля")
-    public void incorrectFulfillPasswordField(String incorrectPassword) {
-        passwordField.sendKeys(incorrectPassword);
+    @Step("Нажатие кнопки Назад")
+    public void pressBackButton() {
+        backButton.click();
     }
 
-    @Step("Нажатие кпонопки \"Вход\"")
-    public void pressEnterButton() {
-        enterButton.click();
+    @Step("Нажатие кнопки Далее")
+    public void pressNextButton() {
+        nextButton.click();
     }
 
-    @Step("Очистка полей Пароль и Логин")
-    public void clearPasswordAndLogin() {
-        loginField.clear();
-        passwordField.clear();
+    public String getUsernameText() {
+        return username.getText();
     }
 
-    public String getAlertText() {
-        return alertMessage.getText();
-    }
-
-    public String getWelcomeMessageText() {
-        return welcomeMessage.getText();
+    @Step("Проверка отображения кнопки \"Найти\"")
+    public boolean isFindButtonDisplayed() {
+        return findButton.isDisplayed();
     }
 }
