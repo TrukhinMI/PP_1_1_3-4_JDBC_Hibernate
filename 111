@@ -1,0 +1,49 @@
+public class AuthPage {
+    private final SelenideElement welcomeMessage = $(byId("kc-page-title"));
+    private final SelenideElement loginField = $(byId("username"));
+    private final SelenideElement passwordField = $(byId("password"));
+    private final SelenideElement enterButton = $(byXpath("//input[contains(@class, 'button')]"));
+    private final SelenideElement alertMessage = $(byXpath("//div[contains(@class, 'alert')]//span[text()='Неправильное имя пользователя или пароль.']"));
+
+    public SelenideElement inputUsername = $x("//*[@id='username']");
+
+
+    @Step("Ввод корректного логина")
+    public void correctFulfillLoginField() {
+        loginField.sendKeys(new PropertyLoader("CarLoan/configCarLoan").loadProperty("username"));
+    }
+
+    @Step("Ввод корректного пароля")
+    public void correctFulfillPasswordField() {
+        passwordField.sendKeys(new PropertyLoader("CarLoan/configCarLoan").loadProperty("password"));
+    }
+
+    @Step("Ввод некорректного логина")
+    public void incorrectFulfillLoginField(String incorrectLogin) {
+        loginField.sendKeys(incorrectLogin);
+    }
+
+    @Step("Ввод некорректного пароля")
+    public void incorrectFulfillPasswordField(String incorrectPassword) {
+        passwordField.sendKeys(incorrectPassword);
+    }
+
+    @Step("Нажатие кпонопки \"Вход\"")
+    public void pressEnterButton() {
+        enterButton.click();
+    }
+
+    @Step("Очистка полей Пароль и Логин")
+    public void clearPasswordAndLogin() {
+        loginField.clear();
+        passwordField.clear();
+    }
+
+    public String getAlertText() {
+        return alertMessage.getText();
+    }
+
+    public String getWelcomeMessageText() {
+        return welcomeMessage.getText();
+    }
+}
