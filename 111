@@ -1,42 +1,66 @@
-public class MainPage {
-    private final SelenideElement username = $(byXpath("//span[contains(text(), 'Автотест Автотестовый')]"));
-    private final SelenideElement exitButton = $(byXpath("//button[@name='logout']"));
-    private final SelenideElement newApplicationButton = $(byXpath("//button[@name='new-application']"));
-    private final SelenideElement backButton = $(byXpath("//button[@name='back']"));
-    private final SelenideElement nextButton = $(byXpath("//button[@name='proceed']"));
-    private final SelenideElement findButton = $(byXpath("//button[@name='search-application']"));
+public class CarLoanGeneralSteps {
+    private static final Logger logger = LogManager.getLogger(CarLoanGeneralSteps.class);
+    private final AuthPage authPage = new AuthPage();
+    private final MainPage mainPage = new MainPage();
 
-    @Step("Нажатие кнопки \"Найти\"")
-    public void pressFindButton() {
-        findButton.click();
+    @Step("Нажатие кнопки далее")
+    public void pressNextButton() {
+        mainPage.pressNextButton();
+    }
+
+    @Step("Нажатие кнопки назад")
+    public void pressBackButton() {
+        mainPage.pressBackButton();
+    }
+
+    @Step("Авторизация в учётную запись")
+    public void accountAuth() {
+        authPage.correctFulfillLoginField();
+        authPage.correctFulfillPasswordField();
+        authPage.pressEnterButton();
+        logger.info("Заполнили данные авторизации, нажали Вход");
+    }
+
+    @Step("Авторизация в учётную с полностью некорректными данными")
+    public void incorrectAccountAuth() {
+        authPage.incorrectFulfillLoginField("KobanKobanov");
+        authPage.incorrectFulfillPasswordField("123145");
+        authPage.pressEnterButton();
+        logger.info("Заполнили данные авторизации, нажали Вход");
+        authPage.clearPasswordAndLogin();
+    }
+
+    @Step("Авторизация в учётную запись c неправильным паролем")
+    public void accountAuthWithWrongPassword() {
+        authPage.correctFulfillLoginField();
+        authPage.incorrectFulfillPasswordField("123145");
+        authPage.pressEnterButton();
+        logger.info("Заполнили данные авторизации, нажали Вход");
+        authPage.clearPasswordAndLogin();
+    }
+
+    @Step("Авторизация в учётную запись c неправильным логином")
+    public void accountAuthWithWrongLogin() {
+        authPage.incorrectFulfillLoginField("KobanKobanov");
+        authPage.correctFulfillPasswordField();
+        authPage.pressEnterButton();
+        logger.info("Заполнили данные авторизации, нажали Вход");
+        authPage.clearPasswordAndLogin();
     }
 
     @Step("Выход из учётной записи")
     public void exitAccount() {
-        exitButton.click();
+        mainPage.exitAccount();
+        logger.info("Вышли из учётной записи");
     }
 
-    @Step("Нажатие кнопки \"Новая заявка\"")
-    public void pressNewApplicationButton() {
-        newApplicationButton.click();
+    @Step("Проверка наличие на странице кнопки \"Найти\"")
+    public void isFindButtonDisplayed() {
+        Assertions.assertTrue(mainPage.isFindButtonDisplayed());
     }
 
-    @Step("Нажатие кнопки Назад")
-    public void pressBackButton() {
-        backButton.click();
-    }
-
-    @Step("Нажатие кнопки Далее")
-    public void pressNextButton() {
-        nextButton.click();
-    }
-
-    public String getUsernameText() {
-        return username.getText();
-    }
-
-    @Step("Проверка отображения кнопки \"Найти\"")
-    public boolean isFindButtonDisplayed() {
-        return findButton.isDisplayed();
+    @Step("Нажатие кнопки Новая заявка")
+    public void pressNewAplicationButton() {
+        mainPage.pressNewApplicationButton();
     }
 }
