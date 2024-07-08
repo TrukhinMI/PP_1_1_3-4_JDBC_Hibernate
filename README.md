@@ -4,3 +4,5 @@
 https://github.com/TrukhinMI/PP_1_1_3-4_JDBC_Hibernate/blob/master/.gitignore
 
 Что не так?
+
+https://www.youtube.com/playlist?list=PLS-CH047rQ3W6WB1gz9ZVmhRQsDYAeN_c
