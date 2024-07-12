@@ -1,21 +1,5 @@
-Как проверить. Ниже команды, с помощью которых можно проверить доступы и примеры их правильного вывода. Исполнять команды нужно в той среде, в которой вы планируете проходить тренинг (Windows CMD/Powershell, WSL, MacOS или Linux)
-# если у вас линукс - уберите .exe в конце
-$ curl.exe -k https://10.202.47.105:6443
-{
-"kind": "Status",
-"apiVersion": "v1",
-"metadata": {
+Установить kubectl Проверка, что он установлен
 
-},
-"status": "Failure",
-"message": "forbidden: User \"system:anonymous\" cannot get path \"/\"",
-"reason": "Forbidden",
-"details": {
-
-},
-"code": 403
-}
-$ curl.exe -k https://10.202.47.124:443
-default backend - 404
-$ curl.exe -k https://k8strain.isb
-default backend - 404
+server@user:~$ kubectl version
+Client Version: version.Info{Major:"1", Minor:"20", GitVersion:"v1.20.0", GitCommit:"af46c47ce925f4c4ad5cc8d1fca46c7b77d13b38", GitTreeState:"clean", BuildDate:"2020-12-08T17:59:43Z", GoVersion:"go1.15.5", Compiler:"gc", Platform:"linux/amd64"}
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
