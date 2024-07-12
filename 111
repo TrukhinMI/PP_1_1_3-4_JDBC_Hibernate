@@ -1,66 +1,21 @@
-public class CarLoanGeneralSteps {
-    private static final Logger logger = LogManager.getLogger(CarLoanGeneralSteps.class);
-    private final AuthPage authPage = new AuthPage();
-    private final MainPage mainPage = new MainPage();
+Как проверить. Ниже команды, с помощью которых можно проверить доступы и примеры их правильного вывода. Исполнять команды нужно в той среде, в которой вы планируете проходить тренинг (Windows CMD/Powershell, WSL, MacOS или Linux)
+# если у вас линукс - уберите .exe в конце
+$ curl.exe -k https://10.202.47.105:6443
+{
+"kind": "Status",
+"apiVersion": "v1",
+"metadata": {
 
-    @Step("Нажатие кнопки далее")
-    public void pressNextButton() {
-        mainPage.pressNextButton();
-    }
+},
+"status": "Failure",
+"message": "forbidden: User \"system:anonymous\" cannot get path \"/\"",
+"reason": "Forbidden",
+"details": {
 
-    @Step("Нажатие кнопки назад")
-    public void pressBackButton() {
-        mainPage.pressBackButton();
-    }
-
-    @Step("Авторизация в учётную запись")
-    public void accountAuth() {
-        authPage.correctFulfillLoginField();
-        authPage.correctFulfillPasswordField();
-        authPage.pressEnterButton();
-        logger.info("Заполнили данные авторизации, нажали Вход");
-    }
-
-    @Step("Авторизация в учётную с полностью некорректными данными")
-    public void incorrectAccountAuth() {
-        authPage.incorrectFulfillLoginField("KobanKobanov");
-        authPage.incorrectFulfillPasswordField("123145");
-        authPage.pressEnterButton();
-        logger.info("Заполнили данные авторизации, нажали Вход");
-        authPage.clearPasswordAndLogin();
-    }
-
-    @Step("Авторизация в учётную запись c неправильным паролем")
-    public void accountAuthWithWrongPassword() {
-        authPage.correctFulfillLoginField();
-        authPage.incorrectFulfillPasswordField("123145");
-        authPage.pressEnterButton();
-        logger.info("Заполнили данные авторизации, нажали Вход");
-        authPage.clearPasswordAndLogin();
-    }
-
-    @Step("Авторизация в учётную запись c неправильным логином")
-    public void accountAuthWithWrongLogin() {
-        authPage.incorrectFulfillLoginField("KobanKobanov");
-        authPage.correctFulfillPasswordField();
-        authPage.pressEnterButton();
-        logger.info("Заполнили данные авторизации, нажали Вход");
-        authPage.clearPasswordAndLogin();
-    }
-
-    @Step("Выход из учётной записи")
-    public void exitAccount() {
-        mainPage.exitAccount();
-        logger.info("Вышли из учётной записи");
-    }
-
-    @Step("Проверка наличие на странице кнопки \"Найти\"")
-    public void isFindButtonDisplayed() {
-        Assertions.assertTrue(mainPage.isFindButtonDisplayed());
-    }
-
-    @Step("Нажатие кнопки Новая заявка")
-    public void pressNewAplicationButton() {
-        mainPage.pressNewApplicationButton();
-    }
+},
+"code": 403
 }
+$ curl.exe -k https://10.202.47.124:443
+default backend - 404
+$ curl.exe -k https://k8strain.isb
+default backend - 404
