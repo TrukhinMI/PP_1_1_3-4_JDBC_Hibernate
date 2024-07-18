@@ -1,8 +1,6 @@
-error: failed to push some refs to 'ssh://bitbucket.isb:443/lendat/channelsat_ui.git'
-To ssh://bitbucket.isb:443/lendat/channelsat_ui.git
-hint: Updates were rejected because the tip of your current branch is behind
-!	refs/heads/PPDEV-3367:refs/heads/PPDEV-3367	[rejected] (non-fast-forward)
-hint: its remote counterpart. Integrate the remote changes (e.g.
-Done
-hint: 'git pull ...') before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+git : Имя "git" не распознано как имя командлета, функции, файла сценария или выполняемой программы. Проверьте правильность написания имени, а также наличие и правильность пути, после чего повторите попытку.
+строка:1 знак:1
++ git pull origin PPDEV-3367
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
