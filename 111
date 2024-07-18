@@ -1,138 +1,55 @@
-package CarLoan.Pages;
 
-import CarLoan.Utils.MainInfoGenerator;
+import CarLoan.Pages.AuthPage;
+import CarLoan.Pages.MainPage;
+import CarLoan.Pages.NewApplicationPage;
+import CarLoan.Pages.GeneralInformationPage;
+import CarLoan.Pages.ClientInformationPage;
+import CarLoan.Steps.GeneralSteps;
+import CarLoan.Steps.NewApplicationStep;
+import CarLoan.Steps.GeneralInformationStep;
+import CarLoan.Steps.ClientInformationStep;
+import Common.Configs.BaseConfig;
+import Common.Utils.AdaptavistUtils.AdaptavistConfigUpdater;
 import Common.Utils.PropertyLoader;
-import com.codeborne.selenide.SelenideElement;
-import com.github.javafaker.Faker;
-import io.qameta.allure.Step;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import static com.codeborne.selenide.Selectors.byXpath;
-import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
-public class NewApplicationPage {
-    private final SelenideElement surname = $(byXpath("//input[@name='borrower.passport.lastName']"));
-    private final SelenideElement name = $(byXpath("//input[@name='borrower.passport.firstName']"));
-    private final SelenideElement patronymic = $(byXpath("//input[@name='borrower.passport.middleName']"));
-    private final SelenideElement noPatronymicButton = $(byXpath("//label[@label='Отсутствует']"));
-    private final SelenideElement birthDate = $(byXpath("//input[@name='borrower.passport.birthDate']"));
-    private final SelenideElement passport = $(byXpath("//input[@name='borrower.passport.series']"));
-    private final SelenideElement searchButton = $(byXpath("//button[@name='search']"));
-    private final SelenideElement cancelButton = $(byXpath("//button[@name='cancel']"));
-    private final SelenideElement nameWarningMessage = $(byXpath("//span[contains(text(), 'Введите имя')]"));
-    private final SelenideElement surnameWarningMessage = $(byXpath("//span[contains(text(), 'Введите фамилию')]"));
-    private final SelenideElement patronymicWarningMessage = $(byXpath("//span[contains(text(), 'Введите отчество')]"));
-    private final SelenideElement birthdayWarningMessage = $(byXpath("//span[contains(text(), 'Введите дату в формате ДД.ММ.ГГГГ')]"));
-    private final SelenideElement passportWarningMessage = $(byXpath("//span[contains(text(), 'Укажите серию и номер')]"));
+@ExtendWith(BaseConfig.class)
+public class BaseConfigCarLoan {
 
-    MainInfoGenerator mainInfoGenerator = new MainInfoGenerator();
+    protected static final String baseUrl = new PropertyLoader("CarLoan/configCarLoan").loadProperty("stand_name");
+    private static final Logger logger = LogManager.getLogger(BaseConfigCarLoan.class);
+    public static AdaptavistConfigUpdater adaptavistConfigUpdater = new AdaptavistConfigUpdater();
 
-    @Step("Нажатие кнопки \"Далее\"")
-    public void pressSearchButton() {
-        searchButton.click();
+    // Устанавливается для возможности делать log.info в тестах
+    static {
+        Configurator.setAllLevels(LogManager.getRootLogger().getName(), Level.INFO);
     }
 
-    public String getNameValue() {
-        return name.getValue();
+    public NewApplicationStep newApplicationStep = new NewApplicationStep();
+    public GeneralInformationStep generalInformationStep = new GeneralInformationStep();
+    public ClientInformationStep clientInformationStep = new ClientInformationStep();
+    public GeneralSteps generalSteps = new GeneralSteps();
+    public MainPage mainPage = new MainPage();
+    public AuthPage authPage = new AuthPage();
+    public GeneralInformationPage generalInformationPage = new GeneralInformationPage();
+    public ClientInformationPage clientInformationPage = new ClientInformationPage();
+    public NewApplicationPage newApplicationPage = new NewApplicationPage();
+
+    @AfterAll
+    public static void updateConfig() {
+        //        adaptavistConfigUpdater.updateConfigBasedOnFolder("CarLoan");
     }
 
-    public String getSurnameValue() {
-        return surname.getValue();
-    }
-
-    public String getPatronymicValue() {
-        return patronymic.getValue();
-    }
-
-    public String getBirthDayValue() {
-        return birthDate.getValue();
-    }
-
-    public String getPassportValue() {
-        return passport.getValue();
-    }
-
-    @Step("Заполнение поля Фамилия")
-    public void fulfillSurname() {
-        surname.sendKeys(mainInfoGenerator.surname);
-    }
-
-    @Step("Заполнение поля Имя")
-    public void fulfillName() {
-        name.sendKeys(mainInfoGenerator.name);
-    }
-
-    @Step("Заполнение поля Отчество")
-    public void fulfillPatronymic() {
-        patronymic.sendKeys(mainInfoGenerator.patronymic);
-    }
-
-    @Step("Заполнение поля Дата рождения")
-    public void fulfillBirthday() {
-        birthDate.sendKeys(mainInfoGenerator.birthDate);
-    }
-
-    @Step("Заполнение поля Серия и номер паспорта гражданина РФ")
-    public void fulfillPassport() {
-        passport.sendKeys(mainInfoGenerator.passport);
-    }
-
-    @Step("Нажатие кнопки Отсутствует отчестов")
-    public void pressNoPatronymicButton() {
-        noPatronymicButton.click();
-    }
-
-    @Step("Нажатие кнопки Отмена")
-    public void pressCancelButton() {
-        cancelButton.click();
-    }
-
-    @Step("Заполнение поля Имя некорректными данными")
-    public void incorrectNameFulfillment() {
-        name.sendKeys(new PropertyLoader("CarLoan/BrokenClient").loadProperty("name"));
-    }
-
-    @Step("Заполнение поля Фамилия некорректными данными")
-    public void incorrectSurnameFulfillment() {
-        surname.sendKeys(new PropertyLoader("CarLoan/BrokenClient").loadProperty("surname"));
-    }
-
-    @Step("Заполнение поля Отчество некорректными данными")
-    public void incorrectPatronymicFulfillment() {
-        patronymic.sendKeys(new PropertyLoader("CarLoan/BrokenClient").loadProperty("patronymic"));
-    }
-
-    @Step("Заполнение поля Дата рождения некорректными данными")
-    public void incorrectBirthDayFulfillment() {
-        birthDate.sendKeys(new PropertyLoader("CarLoan/BrokenClient").loadProperty("birthDay"));
-    }
-
-    @Step("Заполнение поля Дата рождения некорректными данными")
-    public void incorrectPassportFulfillment() {
-        passport.sendKeys(new PropertyLoader("CarLoan/BrokenClient").loadProperty("passport"));
-    }
-
-    @Step("Проверка вывода сообщения ивалидации поля \"Имя\"")
-    public boolean ifNameWarningMessageDisplayed() {
-        return nameWarningMessage.isDisplayed();
-    }
-
-    @Step("Проверка вывода сообщения ивалидации поля \"Фамилия\"")
-    public boolean ifSurnameWarningMessageDisplayed() {
-        return surnameWarningMessage.isDisplayed();
-    }
-
-    @Step("Проверка вывода сообщения ивалидации поля \"Отчество\"")
-    public boolean ifPatronymicWarningMessageDisplayed() {
-        return patronymicWarningMessage.isDisplayed();
-    }
-
-    @Step("Проверка вывода сообщения ивалидации поля \"Дата рождения\"")
-    public boolean ifBirthdayWarningMessageDisplayed() {
-        return birthdayWarningMessage.isDisplayed();
-    }
-
-    @Step("Проверка вывода сообщения ивалидации поля \"Серия и номер паспорта гражданина РФ\"")
-    public boolean ifPassportWarningMessageDisplayed() {
-        return passportWarningMessage.isDisplayed();
+    @BeforeEach
+    public void openBaseUrl() {
+        open(baseUrl);
     }
 }
