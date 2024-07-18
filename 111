@@ -1,5 +1,8 @@
-Установить kubectl Проверка, что он установлен
-
-server@user:~$ kubectl version
-Client Version: version.Info{Major:"1", Minor:"20", GitVersion:"v1.20.0", GitCommit:"af46c47ce925f4c4ad5cc8d1fca46c7b77d13b38", GitTreeState:"clean", BuildDate:"2020-12-08T17:59:43Z", GoVersion:"go1.15.5", Compiler:"gc", Platform:"linux/amd64"}
-The connection to the server localhost:8080 was refused - did you specify the right host or port?
+error: failed to push some refs to 'ssh://bitbucket.isb:443/lendat/channelsat_ui.git'
+To ssh://bitbucket.isb:443/lendat/channelsat_ui.git
+hint: Updates were rejected because the tip of your current branch is behind
+!	refs/heads/PPDEV-3367:refs/heads/PPDEV-3367	[rejected] (non-fast-forward)
+hint: its remote counterpart. Integrate the remote changes (e.g.
+Done
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
