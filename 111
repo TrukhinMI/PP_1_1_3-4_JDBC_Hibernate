@@ -1,15 +1,138 @@
-public class NewApplicationStep {
-    private final NewApplicationAsserts newApplicationAsserts = new NewApplicationAsserts();
-    private final MainPage mainPage = new MainPage();
-    private final NewApplicationPage newApplicationPage = new NewApplicationPage();
-    private final MainInfoGenerator mainInfoGenerator = new MainInfoGenerator();
+package CarLoan.Pages;
 
-@Step("Корректное заполнение полей новой заявки на странице \"Создание заявки\"")
-    public void correctFulfillNewApplication() {
-        mainPage.pressNewApplicationButton();
-        newApplicationPage.fulfillSurname();
-        newApplicationPage.fulfillName();
-        newApplicationPage.fulfillPatronymic();
-        newApplicationPage.fulfillBirthday();
-        newApplicationPage.fulfillPassport();
+import CarLoan.Utils.MainInfoGenerator;
+import Common.Utils.PropertyLoader;
+import com.codeborne.selenide.SelenideElement;
+import com.github.javafaker.Faker;
+import io.qameta.allure.Step;
+
+import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selenide.$;
+
+public class NewApplicationPage {
+    private final SelenideElement surname = $(byXpath("//input[@name='borrower.passport.lastName']"));
+    private final SelenideElement name = $(byXpath("//input[@name='borrower.passport.firstName']"));
+    private final SelenideElement patronymic = $(byXpath("//input[@name='borrower.passport.middleName']"));
+    private final SelenideElement noPatronymicButton = $(byXpath("//label[@label='Отсутствует']"));
+    private final SelenideElement birthDate = $(byXpath("//input[@name='borrower.passport.birthDate']"));
+    private final SelenideElement passport = $(byXpath("//input[@name='borrower.passport.series']"));
+    private final SelenideElement searchButton = $(byXpath("//button[@name='search']"));
+    private final SelenideElement cancelButton = $(byXpath("//button[@name='cancel']"));
+    private final SelenideElement nameWarningMessage = $(byXpath("//span[contains(text(), 'Введите имя')]"));
+    private final SelenideElement surnameWarningMessage = $(byXpath("//span[contains(text(), 'Введите фамилию')]"));
+    private final SelenideElement patronymicWarningMessage = $(byXpath("//span[contains(text(), 'Введите отчество')]"));
+    private final SelenideElement birthdayWarningMessage = $(byXpath("//span[contains(text(), 'Введите дату в формате ДД.ММ.ГГГГ')]"));
+    private final SelenideElement passportWarningMessage = $(byXpath("//span[contains(text(), 'Укажите серию и номер')]"));
+
+    MainInfoGenerator mainInfoGenerator = new MainInfoGenerator();
+
+    @Step("Нажатие кнопки \"Далее\"")
+    public void pressSearchButton() {
+        searchButton.click();
     }
+
+    public String getNameValue() {
+        return name.getValue();
+    }
+
+    public String getSurnameValue() {
+        return surname.getValue();
+    }
+
+    public String getPatronymicValue() {
+        return patronymic.getValue();
+    }
+
+    public String getBirthDayValue() {
+        return birthDate.getValue();
+    }
+
+    public String getPassportValue() {
+        return passport.getValue();
+    }
+
+    @Step("Заполнение поля Фамилия")
+    public void fulfillSurname() {
+        surname.sendKeys(mainInfoGenerator.surname);
+    }
+
+    @Step("Заполнение поля Имя")
+    public void fulfillName() {
+        name.sendKeys(mainInfoGenerator.name);
+    }
+
+    @Step("Заполнение поля Отчество")
+    public void fulfillPatronymic() {
+        patronymic.sendKeys(mainInfoGenerator.patronymic);
+    }
+
+    @Step("Заполнение поля Дата рождения")
+    public void fulfillBirthday() {
+        birthDate.sendKeys(mainInfoGenerator.birthDate);
+    }
+
+    @Step("Заполнение поля Серия и номер паспорта гражданина РФ")
+    public void fulfillPassport() {
+        passport.sendKeys(mainInfoGenerator.passport);
+    }
+
+    @Step("Нажатие кнопки Отсутствует отчестов")
+    public void pressNoPatronymicButton() {
+        noPatronymicButton.click();
+    }
+
+    @Step("Нажатие кнопки Отмена")
+    public void pressCancelButton() {
+        cancelButton.click();
+    }
+
+    @Step("Заполнение поля Имя некорректными данными")
+    public void incorrectNameFulfillment() {
+        name.sendKeys(new PropertyLoader("CarLoan/BrokenClient").loadProperty("name"));
+    }
+
+    @Step("Заполнение поля Фамилия некорректными данными")
+    public void incorrectSurnameFulfillment() {
+        surname.sendKeys(new PropertyLoader("CarLoan/BrokenClient").loadProperty("surname"));
+    }
+
+    @Step("Заполнение поля Отчество некорректными данными")
+    public void incorrectPatronymicFulfillment() {
+        patronymic.sendKeys(new PropertyLoader("CarLoan/BrokenClient").loadProperty("patronymic"));
+    }
+
+    @Step("Заполнение поля Дата рождения некорректными данными")
+    public void incorrectBirthDayFulfillment() {
+        birthDate.sendKeys(new PropertyLoader("CarLoan/BrokenClient").loadProperty("birthDay"));
+    }
+
+    @Step("Заполнение поля Дата рождения некорректными данными")
+    public void incorrectPassportFulfillment() {
+        passport.sendKeys(new PropertyLoader("CarLoan/BrokenClient").loadProperty("passport"));
+    }
+
+    @Step("Проверка вывода сообщения ивалидации поля \"Имя\"")
+    public boolean ifNameWarningMessageDisplayed() {
+        return nameWarningMessage.isDisplayed();
+    }
+
+    @Step("Проверка вывода сообщения ивалидации поля \"Фамилия\"")
+    public boolean ifSurnameWarningMessageDisplayed() {
+        return surnameWarningMessage.isDisplayed();
+    }
+
+    @Step("Проверка вывода сообщения ивалидации поля \"Отчество\"")
+    public boolean ifPatronymicWarningMessageDisplayed() {
+        return patronymicWarningMessage.isDisplayed();
+    }
+
+    @Step("Проверка вывода сообщения ивалидации поля \"Дата рождения\"")
+    public boolean ifBirthdayWarningMessageDisplayed() {
+        return birthdayWarningMessage.isDisplayed();
+    }
+
+    @Step("Проверка вывода сообщения ивалидации поля \"Серия и номер паспорта гражданина РФ\"")
+    public boolean ifPassportWarningMessageDisplayed() {
+        return passportWarningMessage.isDisplayed();
+    }
+}
