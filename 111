@@ -1,44 +1,5 @@
-PS C:\Users\truhinmi\Documents\projects\new_channelsat_ui> git pull origin PPDEV-3367
-From ssh://bitbucket.isb:443/lendat/channelsat_ui
- * branch            PPDEV-3367 -> FETCH_HEAD
-Auto-merging src/main/java/CarLoan/Asserts/ClientInformationAsserts.java
-CONFLICT (content): Merge conflict in src/main/java/CarLoan/Asserts/ClientInformationAsserts.java
-Auto-merging src/main/java/CarLoan/Asserts/GeneralInfoAsserts.java
-CONFLICT (content): Merge conflict in src/main/java/CarLoan/Asserts/GeneralInfoAsserts.java
-Auto-merging src/main/java/CarLoan/Asserts/NewApplicationAsserts.java
-CONFLICT (content): Merge conflict in src/main/java/CarLoan/Asserts/NewApplicationAsserts.java
-Auto-merging src/main/java/CarLoan/Configs/BaseConfigCarLoan.java
-CONFLICT (content): Merge conflict in src/main/java/CarLoan/Configs/BaseConfigCarLoan.java
-Auto-merging src/main/java/CarLoan/Pages/Authenfication/AuthPage.java
-CONFLICT (rename/rename): src/main/java/CarLoan/Pages/Authenfication/AuthPage.java renamed to src/main/java/CarLoan/Pages/AuthPage.java in HEAD and to src/main/java/CarLoan/Pages/authenfication/AuthPage.java in df3502caa0582660bdac4f68d221b0a25ec29376.
-Auto-merging src/main/java/CarLoan/Pages/Step1_15/MainPage.java
-CONFLICT (rename/rename): src/main/java/CarLoan/Pages/Step1_15/MainPage.java renamed to src/main/java/CarLoan/Pages/MainPage.java in HEAD and to src/main/java/CarLoan/Pages/requestList__Step1_15/MainPage.java in df3502caa0582660bdac4f68d221b0a25ec29376.
-Auto-merging src/main/java/CarLoan/Pages/Step1_15/NewApplicationPage.java
-CONFLICT (rename/rename): src/main/java/CarLoan/Pages/Step1_15/NewApplicationPage.java renamed to src/main/java/CarLoan/Pages/NewApplicationPage.java in HEAD and to src/main/java/CarLoan/Pages/requestList__Step1_15/NewApplicationPage.java in df3502caa0582660bdac4f68d221b0a25ec29376.
-Auto-merging src/main/java/CarLoan/Pages/Step2/GeneralInformationPage.java
-CONFLICT (rename/rename): src/main/java/CarLoan/Pages/Step2/GeneralInformationPage.java renamed to src/main/java/CarLoan/Pages/GeneralInformationPage.java in HEAD and to src/main/java/CarLoan/Pages/generalInformation__Step2/GeneralInformationPage.java in df3502caa0582660bdac4f68d221b0a25ec29376.
-Auto-merging src/main/java/CarLoan/Pages/Step3/ClientInformationPage.java
-CONFLICT (rename/rename): src/main/java/CarLoan/Pages/Step3/ClientInformationPage.java renamed to src/main/java/CarLoan/Pages/ClientInformationPage.java in HEAD and to src/main/java/CarLoan/Pages/clientInformation__Step3/ClientInformationPage.java in df3502caa0582660bdac4f68d221b0a25ec29376.
-Auto-merging src/main/java/CarLoan/Pages/Step4/WorkActivityPage.java
-CONFLICT (rename/rename): src/main/java/CarLoan/Pages/Step4/WorkActivityPage.java renamed to src/main/java/CarLoan/Pages/WorkActivityPage.java in HEAD and to src/main/java/CarLoan/Pages/workActivity__Step4/WorkActivityPage.java in df3502caa0582660bdac4f68d221b0a25ec29376.
-Auto-merging src/main/java/CarLoan/Pages/Step5/CreditAndProductPage.java
-CONFLICT (rename/rename): src/main/java/CarLoan/Pages/Step5/CreditAndProductPage.java renamed to src/main/java/CarLoan/Pages/CreditAndProductPage.java in HEAD and to src/main/java/CarLoan/Pages/creditAndProduct__Step5/CreditAndProductPage.java in df3502caa0582660bdac4f68d221b0a25ec29376.
-Auto-merging src/main/java/CarLoan/Pages/Step6/DocumentsUploadPage.java
-CONFLICT (rename/rename): src/main/java/CarLoan/Pages/Step6/DocumentsUploadPage.java renamed to src/main/java/CarLoan/Pages/DocumentsUploadPage.java in HEAD and to src/main/java/CarLoan/Pages/documentsUpload___Step6/DocumentsUploadPage.java in df3502caa0582660bdac4f68d221b0a25ec29376.
-Auto-merging src/main/java/CarLoan/Steps/ClientInformationStep.java
-CONFLICT (content): Merge conflict in src/main/java/CarLoan/Steps/ClientInformationStep.java
-Auto-merging src/main/java/CarLoan/Steps/GeneralInformationStep.java
-CONFLICT (content): Merge conflict in src/main/java/CarLoan/Steps/GeneralInformationStep.java
-Auto-merging src/main/java/CarLoan/Steps/GeneralSteps.java
-CONFLICT (content): Merge conflict in src/main/java/CarLoan/Steps/GeneralSteps.java
-Auto-merging src/main/java/CarLoan/Steps/NewApplicationStep.java
-CONFLICT (content): Merge conflict in src/main/java/CarLoan/Steps/NewApplicationStep.java
-CONFLICT (modify/delete): src/test/java/CarLoan/RegressCarLoan/NegativeTestsCarLoan/E2ENegativeCarLoan/Step15/NegativeStep15Test.java deleted in HEAD and modified in df3502caa0582660bdac4f68d221b0a25ec29376.  Version df3502caa0582660bdac4f68d221b0a25ec29376 of src/test/java/CarLoan/RegressCarLoan/NegativeTestsCarLoan/E2ENegativeCarLoan/Step15/NegativeStep15Test.java left in tree.
-CONFLICT (modify/delete): src/test/java/CarLoan/RegressCarLoan/NegativeTestsCarLoan/E2ENegativeCarLoan/Step2/NegativeGeneralInformationTest.java deleted in HEAD and modified in df3502caa0582660bdac4f68d221b0a25ec29376.  Version df3502caa0582660bdac4f68d221b0a25ec29376 of src/test/java/CarLoan/RegressCarLoan/NegativeTestsCarLoan/E2ENegativeCarLoan/Step2/NegativeGeneralInformationTest.java left in tree.
-CONFLICT (modify/delete): src/test/java/CarLoan/RegressCarLoan/NegativeTestsCarLoan/E2ENegativeCarLoan/Step3/NegativeClientInformationTest.java deleted in HEAD and modified in df3502caa0582660bdac4f68d221b0a25ec29376.  Version df3502caa0582660bdac4f68d221b0a25ec29376 of src/test/java/CarLoan/RegressCarLoan/NegativeTestsCarLoan/E2ENegativeCarLoan/Step3/NegativeClientInformationTest.java left in tree.
-Auto-merging src/test/java/CarLoan/RegressCarLoan/NegativeTestsCarLoan/FeatureNegativeCarLoan/NegativeLoginTest.java
-CONFLICT (modify/delete): src/test/java/CarLoan/RegressCarLoan/PositiveTestsCarLoan/E2EPositive/Step15/PositiveStep05Test.java deleted in HEAD and modified in df3502caa0582660bdac4f68d221b0a25ec29376.  Version df3502caa0582660bdac4f68d221b0a25ec29376 of src/test/java/CarLoan/RegressCarLoan/PositiveTestsCarLoan/E2EPositive/Step15/PositiveStep05Test.java left in tree.
-CONFLICT (modify/delete): src/test/java/CarLoan/RegressCarLoan/PositiveTestsCarLoan/E2EPositive/Step2/PositiveGeneralInformationTest.java deleted in HEAD and modified in df3502caa0582660bdac4f68d221b0a25ec29376.  Version df3502caa0582660bdac4f68d221b0a25ec29376 of src/test/java/CarLoan/RegressCarLoan/PositiveTestsCarLoan/E2EPositive/Step2/PositiveGeneralInformationTest.java left in tree.
-CONFLICT (modify/delete): src/test/java/CarLoan/RegressCarLoan/PositiveTestsCarLoan/E2EPositive/Step3/PositiveClientInformationTest.java deleted in HEAD and modified in df3502caa0582660bdac4f68d221b0a25ec29376.  Version df3502caa0582660bdac4f68d221b0a25ec29376 of src/test/java/CarLoan/RegressCarLoan/PositiveTestsCarLoan/E2EPositive/Step3/PositiveClientInformationTest.java left in tree.
-Auto-merging src/test/java/CarLoan/RegressCarLoan/PositiveTestsCarLoan/FeaturePositiveCarLoan/PositiveLoginTest.java
-Automatic merge failed; fix conflicts and then commit the result.
+<<<<<<<< HEAD:src/main/java/CarLoan/Pages/NewApplicationPage.java
+package CarLoan.Pages;
+========
+package CarLoan.Pages.requestList__Step1_15;
+>>>>>>>> df3502caa0582660bdac4f68d221b0a25ec29376:src/main/java/CarLoan/Pages/requestList__Step1_15/NewApplicationPage.java
