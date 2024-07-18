@@ -1,41 +1,15 @@
+public class NewApplicationStep {
+    private final NewApplicationAsserts newApplicationAsserts = new NewApplicationAsserts();
+    private final MainPage mainPage = new MainPage();
+    private final NewApplicationPage newApplicationPage = new NewApplicationPage();
+    private final MainInfoGenerator mainInfoGenerator = new MainInfoGenerator();
 
-@Tag("E2ENegativeCarLoan")
-@Epic("End2End Негативные регресс-тесты CarLoan")
-@Story("Негативные тесты на странице Клиентская информация")
-@DisplayName("Негативные тесты на странице Клиентская информация")
-public class NegativeClientInformationTest extends BaseConfigCarLoan {
-
-    @Test
-    @Tag("PPDEV-T36")
-    @DisplayName("PPDEV-T36 [Клиентская информация] Оставление всех полей пустыми")
-    public void createNewApplicationWithAllEmptyFields() {
-        generalSteps.accountAuth();
-        Assertions.assertEquals("Автотест Автотестовый", mainPage.getUsernameText());
-        newApplicationStep.correctFulfillNewApplication();
-        newApplicationStep.pressSearchButtonStep05();
-        generalInformationStep.correctFulfillGeneralInformation();
-        generalInformationStep.checkIfGeneralInformationCorrect();
-        generalSteps.pressNextButton();
-        Assertions.assertEquals("Клиентская информация", clientInformationPage.getTopMessageText());
-        generalSteps.pressNextButton();
-        clientInformationStep.checkEmptinessOfAllFields();
-        clientInformationStep.checkAllWarningMessages();
+@Step("Корректное заполнение полей новой заявки на странице \"Создание заявки\"")
+    public void correctFulfillNewApplication() {
+        mainPage.pressNewApplicationButton();
+        newApplicationPage.fulfillSurname();
+        newApplicationPage.fulfillName();
+        newApplicationPage.fulfillPatronymic();
+        newApplicationPage.fulfillBirthday();
+        newApplicationPage.fulfillPassport();
     }
-
-    @Test
-    @Tag("PPDEV-T46")
-    @DisplayName("PPDEV-T46 [Клиентская информация] Полное заполнение всех полей корректными данными без прикрепления копий документов")
-    public void createNewApplicationWithCorrectDataWithoutFile() {
-        generalSteps.accountAuth();
-        Assertions.assertEquals("Автотест Автотестовый", mainPage.getUsernameText());
-        newApplicationStep.correctFulfillNewApplication();
-        newApplicationStep.pressSearchButtonStep05();
-        generalInformationStep.correctFulfillGeneralInformation();
-        generalInformationStep.checkIfGeneralInformationCorrect();
-        generalSteps.pressNextButton();
-        Assertions.assertEquals("Клиентская информация", clientInformationPage.getTopMessageText());
-        clientInformationStep.correctFulfillmentClientInfoWithoutDocuments();
-        generalSteps.pressNextButton();
-        clientInformationStep.checkClientInfoCorrectnessWithoutFile();
-    }
-}
