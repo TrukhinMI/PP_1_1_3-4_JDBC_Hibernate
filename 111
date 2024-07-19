@@ -1,1 +1,13 @@
-https://www.youtube.com/playlist?list=PLS-CH047rQ3W6WB1gz9ZVmhRQsDYAeN_c
+Total 99 (delta 52), reused 0 (delta 0), pack-reused 0
+remote: 
+remote: Control Freak - Commit rejected. Foxtrot merges not allowed on "PPDEV-3367".        
+remote: -----        
+remote: Commit be7ea728d81d5f4d contains a foxtrot merge.        
+remote: A rebase will repair the problem:        
+remote: 
+remote:   git rebase        
+remote: 
+remote: Alternatively, redo the merge in the opposite direction.        
+remote: -----        
+remote: 
+error: failed to push some refs to 'ssh://bitbucket.isb:443/lendat/channelsat_ui.git'
