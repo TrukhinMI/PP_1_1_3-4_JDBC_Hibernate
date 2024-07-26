@@ -1,13 +1,26 @@
-Total 99 (delta 52), reused 0 (delta 0), pack-reused 0
-remote: 
-remote: Control Freak - Commit rejected. Foxtrot merges not allowed on "PPDEV-3367".        
-remote: -----        
-remote: Commit be7ea728d81d5f4d contains a foxtrot merge.        
-remote: A rebase will repair the problem:        
-remote: 
-remote:   git rebase        
-remote: 
-remote: Alternatively, redo the merge in the opposite direction.        
-remote: -----        
-remote: 
-error: failed to push some refs to 'ssh://bitbucket.isb:443/lendat/channelsat_ui.git'
+Шаги воспроизведения:
+
+1. Отправить запрос с телом
+
+{
+  "firstName": "Иван",
+  "middleName": "Иванович",
+  "lastName": "Иванов",
+  "series": "10 10",
+  "number": "111222",
+  "birthDate": "2000-07-25",
+  "letterDate": "2024-07-25",
+  "letterTime": {
+    "hour": 9,
+    "minute": 10,
+    "second": 45,
+    "nano": 0
+  }
+}
+
+
+Ожидаемый результат: корректно обрабатывает JSON запрос и десериализует поле letterTime 
+
+Фактический результат: возникает исключение 
+
+"message": "org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.time.LocalTime` from Object value (token `JsonToken.START_OBJECT`)"
