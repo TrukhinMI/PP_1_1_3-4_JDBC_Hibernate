@@ -13,3 +13,6 @@ https://www.youtube.com/playlist?list=PLS-CH047rQ3W6WB1gz9ZVmhRQsDYAeN_c
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 </properties>
+
+
+https://otpbank-ru.zoom.us/j/9245139243?pwd=TTBkMlF6MU1rUVI4WnhybUVJWHpyUT09
