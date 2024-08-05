@@ -1,4 +1,14 @@
-spring.datasource.driver-class-name=org.postgresql.Driver
-spring.datasource.url=jdbc:postgresql://gs-ltcjopg.isb:5000/goauto_backend_all?currentSchema=fill_application_service
-spring.datasource.username=fill_application_service_user
-spring.datasource.password=wPlnMIWdJI6eAzesGVBv
+Can't create driver instance
+  Error creating driver 'PostgreSQL' instance.
+Most likely required jar files are missing.
+You should configure jars in driver settings.
+
+Reason: can't load driver class 'org.postgresql.Driver'
+  Error creating driver 'PostgreSQL' instance.
+Most likely required jar files are missing.
+You should configure jars in driver settings.
+
+Reason: can't load driver class 'org.postgresql.Driver'
+    org.postgresql.Driver
+    org.postgresql.Driver
+
