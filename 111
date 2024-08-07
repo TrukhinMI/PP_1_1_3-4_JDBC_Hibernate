@@ -1,14 +1,5 @@
-Can't create driver instance
-  Error creating driver 'PostgreSQL' instance.
-Most likely required jar files are missing.
-You should configure jars in driver settings.
-
-Reason: can't load driver class 'org.postgresql.Driver'
-  Error creating driver 'PostgreSQL' instance.
-Most likely required jar files are missing.
-You should configure jars in driver settings.
-
-Reason: can't load driver class 'org.postgresql.Driver'
-    org.postgresql.Driver
-    org.postgresql.Driver
-
+junit.jupiter.execution.parallel.enabled = true
+junit.jupiter.execution.parallel.mode.default = concurrent
+junit.jupiter.execution.parallel.mode.classes.default = concurrent
+junit.jupiter.execution.parallel.config.strategy = fixed
+junit.jupiter.execution.parallel.config.fixed.parallelism = 4
