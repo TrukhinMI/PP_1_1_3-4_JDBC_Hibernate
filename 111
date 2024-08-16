@@ -1,5 +1,39 @@
-junit.jupiter.execution.parallel.enabled = true
-junit.jupiter.execution.parallel.mode.default = concurrent
-junit.jupiter.execution.parallel.mode.classes.default = concurrent
-junit.jupiter.execution.parallel.config.strategy = fixed
-junit.jupiter.execution.parallel.config.fixed.parallelism = 4
+SELECT 
+    a.id AS application_id,
+    a.number AS application_number,
+    a.created_at,
+    a.updated_at,
+    a.status,
+    a.last_name,
+    a.first_name,
+    a.middle_name,
+    a.birth_date,
+    a.passport_series,
+    a.passport_number,
+    a.work_place_name,
+    a.work_place_inn,
+    a.work_place_phone_number,
+    a.employment_type,
+    a.work_experience_status,
+    a.income,
+    a.marital_status,
+    a.education_type,
+    a.additional_document_type,
+    a.additional_document_number,
+    a.additional_document_issue_date,
+    a.contact_phone_number,
+    a.registration_address_date,
+    a.gender,
+    a.passport_issue_date,
+    a.passport_department,
+    a.passport_department_code,
+    a.birth_place,
+    a.birth_country,
+    a.mobile_phone_number,
+    a.division_id,
+    ad.type AS address_type,
+    ad.full_address AS address
+FROM 
+    application a
+LEFT JOIN 
+    address ad ON a.id = ad.application_id;
