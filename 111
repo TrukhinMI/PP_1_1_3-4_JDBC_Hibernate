@@ -1,1 +1,96 @@
-Проверка создания заявки по тарифу "Под залог Авто Выгодный" с автомобилем с учетом типа (иностранный/отечественный) и возраста (старше/младше 10 или 5 лет)
+Есть задача 1
+1) Необходимо создать таблицы (Модель данных):
+
+"car_model" с параметрами:
+Параметр	Тип параметра	Описание
+brand	varchar(40)	Марка автомобиля
+model	varchar(40)	Модель автомобиля
+type	varchar(20)	Тип автомобиля
+"product" с параметрами:
+Параметр	Тип параметра	Описание
+id	uuid	uuid заявки
+activation_date	date	Дата активации продукта
+category	varchar(50)	Категория продукта
+code	varchar(50)	Код продукта
+created	timestamp	Дата создания продукта
+credit_sum_max	numeric	Максимальная сумма кредита на продукте
+credit_sum_min	numeric	Минимальная сумма кредита на продукте
+deactivation_date	date	Дата деактивации продукта
+initial_fee_max	numeric	Максимальный первоначальный взнос
+initial_fee_min	numeric	Минимальный первоначальный взнос
+name	varchar(250)	Название продукта
+rate	numeric	Ставка на продукте
+status	varchar(20)	Статус продукта
+term_month_min	numeric	Минимальный срок кредита
+term_mouth_max	numeric	Максимальный срок кредита
+updated	timestamp	Дата обновления продукта
+"division_product" с параметрами: 
+Параметр	Тип	Описание
+division_id	uuid	id подразделения
+product_id	uuid	id продукта
+ "category_param" с параметрами:
+Параметр	Тип	Описание
+category	varchar(50)	Категория автомобиля
+car_type	varchar(20)	Тип автомобиля
+production_year_max_offset	integer	Максимальный шаг в годах 
+production_year_min_offset	integer	Минимальный шаг в годах
+used	boolean	Новый/БУ
+2) Загрузить справочник автомобилей в таблицу "car_model" из файла во вложении "Справочник автомобилей"
+
+3) Загрузить список продуктов в таблицу "product" из файла во вложении "Продукты авто"
+
+4) Необходимо реализовать контролер по подбору марки и модели автомобиля "/api/v1/brand-model?brandFilter="(fill-application-service). 
+
+5) Необходимо реализовать контроллер по подбору продукта "/api/v1/product/choose/options" (fill-application-service). 
+
+6) Реализовать логику, при обработке запроса "/api/v1/product/choose/options": 
+
+Определить категорию автомобиля по таблице "category_param":
+
+Тип авто (CAR_LIST.TYPE)	Год производства (productionYear)	Новый/С пробегом (used)	Категория авто
+Отечественный автомобиль	Год выпуска, не больше текущий +1	Новый	Автомобили-новые российские
+Отечественный автомобиль	Год выпуска >= текущий -5 лет	С пробегом	Автомобили-б/у до 5 лет российские
+Отечественный автомобиль	Год выпуска >= текущий -10 лет	С пробегом	Автомобили-б/у до 10 лет российские
+Отечественный автомобиль	Год выпуска < текущий -10 лет	С пробегом	Автомобили с пробегом старше 10 лет
+Иностранный автомобиль	Год выпуска, не больше текущий +1	Новый	Автомобили-новые иностранные
+Иностранный автомобиль	Год выпуска >= текущий -5 лет	С пробегом	Автомобили-б/у до 5 лет иност
+Иностранный автомобиль	Год выпуска >= текущий -10 лет	С пробегом	Автомобили-б/у до 10 лет иност
+Иностранный автомобиль	Год выпуска < текущий -10 лет	С пробегом	Автомобили с пробегом старше 10 лет
+7) Отобрать продукты, согласно логике:
+
+7.1 Взять значения "division_product.product_id", где "divisionId" из "/api/v1/product/choose/options" соответствует значению "division_product.product_id"
+
+7.2 По отобранным значениям в п.7.1 "division_product.product_id" найти продукты в таблице "product"
+
+7.3 По отобранным продуктам из п. 7.2, необходимо отобрать продукты, у которых product.category = категории авто из п.6.1
+
+7.4 По отобранным продуктам из п. 7.3, необходимо отобрать продукты, у которых:
+
+PRODUCT.MIN_CREDIT_SUM >= carPrice + сумма всех услуг services/service/sum-initialPayment (все параметры из "/api/v1/product/choose/options")
+PRODUCT.MAX_CREDIT_SUM <= carPrice + сумма всех услуг services/service/sum-initialPayment (все параметры из "/api/v1/product/choose/options")
+7.5 По отобранным продуктам из п. 7.4, необходимо отобрать продукты, у которых:
+
+PRODUCT.INITIAL_FEE_MIN >= initialPayment (параметр из "/api/v1/product/choose/options")
+PRODUCT.INITIAL_FEE_MAX <= initialPayment (параметр из "/api/v1/product/choose/options")
+7.6 По отобранным продуктам из п. 7.5, необходимо отобрать продукты, у которых:
+
+TERM_MONTH_MIN >= term (параметр из "/api/v1/product/choose/options")
+TERM_MONTH_MAX <= term (параметр из "/api/v1/product/choose/options")
+7.7 По каждому отобранному продукту из 7.6, необходимо отправить в ответе "/api/v1/product/choose/options": 
+
+id = PRODUCT.ID
+name = PRODUCT.NAME
+creditSumm = carPrice + (сумма всех услуг services/service/sum)-initialPayment
+serviceSumm = сумма всех услуг services/service/sum
+monthlyPayment = 
+
+
+Р - размер ежемесячного платежа
+
+О - остаток суммы кредита = carPrice + (сумма всех услуг services/service/sum)-initialPayment (все параметры из "/api/v1/product/choose/options") )
+
+ПС - месячная процентная ставка = рассчитывается как ставка по кредиту "PRODUCT.RATE"/100*12
+
+ПП (-1) - процентные периоды до окончания срока кредита  = term из "/api/v1/product/choose/options"
+
+Пример расчета: Аннуитет.xlsx
