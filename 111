@@ -1,6 +1,19 @@
-Экран "Загрузка документов". Логика:
-1) Необходимо создать ручку "docs-upload" к (fill-application-service) для сохранения информации на экране "Загрузка документов".
-
-2) Обновить статус с "DOCS_UPLOAD" на "CAR_INFO" на заявке. Расширение статусной модели в рамках https://jira.otpbank.ru/browse/CARL-151
-
-3) Вернуть из api "docs-upload" (fill-application-service) параметры заявки. 
+{"@timestamp":"2024-11-19T06:27:10.053888314Z","@version":"1","level":"ERROR","message":"Application run failed","logger_name":"org.springframework.boot.SpringApplication","thread_name":"main","application_name":"fill-applicatio
+n-service","stacktrace":"org.postgresql.util.PSQLException: ERROR: relation \"cft_integration\" already exists\n\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2725)\n\tat org.postgresql
+.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2412)\n\tat org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:371)\n\tat org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:502
+)\n\tat org.postgresql.jdbc.PgStatement.execute(PgStatement.java:419)\n\tat org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:341)\n\tat org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:326)\n\ta
+t org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:302)\n\tat org.postgresql.jdbc.PgStatement.execute(PgStatement.java:297)\n\tat com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)\n\tat com.z
+axxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)\n\tat liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:441)\n\t... 69 common frames omitted\nWrapped by: liqui
+base.exception.DatabaseException: ERROR: relation \"cft_integration\" already exists [Failed SQL: (0) CREATE TABLE public.cft_integration (request_id UUID, application_id UUID, state VARCHAR(30), response_code INTEGER, response_
+details VARCHAR(1000), request_body VARCHAR(10000), request_time TIMESTAMP WITHOUT TIME ZONE, response_time TIMESTAMP WITHOUT TIME ZONE)]\n\tat liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecu
+tor.java:445)\n\tat liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:77)\n\tat liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:160)\n\tat liquibase.database.AbstractJdbcDatabase.execute(AbstractJdbcDat
+abase.java:1270)\n\tat liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1252)\n\tat liquibase.changelog.ChangeSet.execute(ChangeSet.java:702)\n\t... 64 common frames omitted\nWrapped by: liquib
+ase.exception.MigrationFailedException: Migration failed for changeset db/changelog/1.0.0/30_CARL-144-cft-client.xml::CARL-144-cft-client::NikitinAleO:\n     Reason: liquibase.exception.DatabaseException: ERROR: relation \"cft_i
+ntegration\" already exists [Failed SQL: (0) CREATE TABLE public.cft_integration (request_id UUID, application_id UUID, state VARCHAR(30), response_code INTEGER, response_details VARCHAR(1000), request_body VARCHAR(10000), reque
+st_time TIMESTAMP WITHOUT TIME ZONE, response_time TIMESTAMP WITHOUT TIME ZONE)]\n\tat liquibase.changelog.ChangeSet.execute(ChangeSet.java:744)\n\tat liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:59)\n\tat
+liquibase.changelog.ChangeLogIterator$2.lambda$null$0(ChangeLogIterator.java:124)\n\tat liquibase.Scope.lambda$child$0(Scope.java:187)\n\tat liquibase.Scope.child(Scope.java:196)\n\tat liquibase.Scope.child(Scope.java:186)\n\tat
+ liquibase.Scope.child(Scope.java:165)\n\tat liquibase.changelog.ChangeLogIterator$2.lambda$run$1(ChangeLogIterator.java:124)\n\tat liquibase.Scope.lambda$child$0(Scope.java:187)\n\tat liquibase.Scope.child(Scope.java:196)\n\tat
+ liquibase.Scope.child(Scope.java:186)\n\tat liquibase.Scope.child(Scope.java:165)\n\tat liquibase.Scope.child(Scope.java:256)\n\tat liquibase.changelog.ChangeLogIterator$2.run(ChangeLogIterator.java:105)\n\tat liquibase.Scope.l
+ambda$child$0(Scope.java:187)\n\tat liquibase.Scope.child(Scope.java:196)\n\tat liquibase.Scope.child(Scope.java:186)\n\tat liquibase.Scope.child(Scope.java:165)\n\tat liquibase.Scope.child(Scope.java:256)\n\tat liquibase.Scope.
+child(Scope.java:260)\n\tat liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:75)\n\t... 44 common frames omitted\nWrapped by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException:
+Migration failed for changeset db/changelog/1.0.0/30_CARL-144-cft-client.xml::CARL-144-cft-client::NikitinAleO:\n
