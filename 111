@@ -1,1 +1,293 @@
-{"@timestamp":"2024-11-25T06:22:03.822052188Z","@version":"1","level":"ERROR","message":"Cannot check stop list for 214156065 null","logger_name":"ru.otpbank.goauto.ublservice.infra.RestUblAdapter","thread_name":"http-nio-8080-exec-7","traceId":"674417687729f9e940b71144e812f66c","spanId":"1287183dc2019184","application_name":"ubl-info-service","stacktrace":"java.net.ConnectException: Connection refused\n\tat sun.nio.ch.Net.pollConnect(Net.java)\n\tat sun.nio.ch.Net.pollConnectNow(Net.java:672)\n\tat sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:554)\n\tat sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602)\n\tat java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)\n\tat java.net.Socket.connect(Socket.java:633)\n\tat sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:304)\n\tat sun.net.NetworkClient.doConnect(NetworkClient.java:178)\n\tat sun.net.www.http.HttpClient.openServer(HttpClient.java:533)\n\tat sun.net.www.http.HttpClient.openServer(HttpClient.java:638)\n\tat sun.net.www.protocol.https.HttpsClient.<init>(HttpsClient.java:266)\n\tat sun.net.www.protocol.https.HttpsClient.New(HttpsClient.java:380)\n\tat sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.getNewHttpClient(AbstractDelegateHttpsURLConnection.java:193)\n\tat sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1242)\n\tat sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1128)\n\tat sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:179)\n\tat sun.net.www.protocol.http.HttpURLConnection.getOutputStream0(HttpURLConnection.java:1451)\n\tat sun.net.www.protocol.http.HttpURLConnection.getOutputStream(HttpURLConnection.java:1422)\n\tat sun.net.www.protocol.https.HttpsURLConnectionImpl.getOutputStream(HttpsURLConnectionImpl.java:220)\n\tat feign.Client$Default.convertAndSend(Client.java:225)\n\tat feign.Client$Default.execute(Client.java:106)\n\tat feign.micrometer.MicrometerObservationCapability.lambda$enrich$1(MicrometerObservationCapability.java:53)\n\tat feign.micrometer.MeteredClient.execute(MeteredClient.java:48)\n\tat feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:100)\n\t... 85 common frames omitted\nWrapped by: feign.RetryableException: Connection refused executing POST https://ubl2.idms-test.isb/rest-adapter-app/api/v1/get-combo\n\tat feign.FeignException.errorExecuting(FeignException.java:277)\n\tat feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:110)\n\tat feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:70)\n\tat feign.ReflectiveFeign$FeignInvocationHandler.invoke(ReflectiveFeign.java:96)\n\tat feign.micrometer.MeteredInvocationHandleFactory.lambda$create$0(MeteredInvocationHandleFactory.java:70)\n\tat jdk.proxy2.$Proxy109.checkStopList(Unknown Source)\n\tat ru.otpbank.goauto.ublservice.infra.RestUblAdapter.checkStopList(RestUblAdapter.java:46)\n\tat jdk.internal.reflect.GeneratedMethodAccessor62.invoke(Unknown Source)\n\tat jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:568)\n\tat org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)\n\tat org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:751)\n\tat org.springframework.retry.interceptor.RetryOperationsInterceptor$1.doWithRetry
+{
+  "opty": {
+    "optyIds": [
+      {
+        "optyId": "7e868161-b0a9-4634-9901-73d638cdd33e",
+        "systemId": "pos.autoconveyor"
+      }
+    ],
+    "division": {
+      "toId": "0001",
+      "tpId": "4dbe9f76-0bf7-4f2f-86a4-2ed7a4b3bb6b",
+      "kkoId": "006",
+      "tpZip": null,
+      "tpCity": null,
+      "tpCode": "770105661000003",
+      "tpName": null,
+      "kkoName": "BMW, ГК Инчкейп, г. Москва, Тест шоссе, д. 36",
+      "tpHouse": null,
+      "category": null,
+      "isBroker": false,
+      "tpCityCd": null,
+      "tpCorpus": null,
+      "tpOffice": null,
+      "tpRegion": null,
+      "tpStreet": null,
+      "tpCountry": null,
+      "tpStreetCd": null,
+      "tpProvinceId": null,
+      "tpProvinceName": null
+    },
+    "employee": {
+      "midName": "",
+      "category": null,
+      "lastName": "Автотест",
+      "firstName": "Автотестовый",
+      "employeeId": "autotest",
+      "organization": null
+    },
+    "optyType": null,
+    "insurances": [],
+    "isDeferred": null,
+    "attachments": [
+      {
+        "attachmentUrl": "URL",
+        "attachmentType": "client_documents"
+      },
+      {
+        "attachmentUrl": "URL",
+        "attachmentType": "additional_client_document"
+      },
+      {
+        "attachmentUrl": "URL",
+        "attachmentType": "personal_data_agreement"
+      }
+    ],
+    "createdDate": "2024-11-27 10:48:48",
+    "creditGoods": [
+      {
+        "hp": null,
+        "name": "Автомобиль",
+        "brand": "Volkswagen",
+        "count": 1,
+        "model": "Polo",
+        "price": 700000.01,
+        "country": null,
+        "vinAuto": null,
+        "category": "USED_UP_TO_5_YEAR_FOREIGN",
+        "autoStatus": "С пробегом",
+        "ownershipType": null,
+        "initialPayment": null,
+        "productionYear": "2020",
+        "requestedLimit": null
+      }
+    ],
+    "userChannel": null,
+    "loanProducts": [
+      {
+        "rate": {
+          "max": 25.5,
+          "min": 25.5
+        },
+        "maxAge": 69,
+        "maxSum": 2000000,
+        "minAge": 21,
+        "minSum": 100000,
+        "maxTerm": 84,
+        "minTerm": 12,
+        "productId": "880011ba-04b2-4557-a140-cbef861ce3b0",
+        "productCode": "AUTO1649_M12_60",
+        "productName": "Freedom",
+        "currencyCode": "RUB",
+        "supportProgram": null,
+        "rateChangeCondition": null,
+        "initPaymentPercentMax": 90.0,
+        "initPaymentPercentMin": 10.0,
+        "incomeConfirmationForm": null
+      }
+    ],
+    "optyOfficeId": null,
+    "optyProvince": null,
+    "creditPurpose": "Автокредитование",
+    "requestedRate": null,
+    "requestedTerm": 12,
+    "initialPayment": 99000.02,
+    "requestedAmount": 599999.99
+  },
+  "uuid": "7e868161-b0a9-4634-9901-73d638cdd33e",
+  "techType": null,
+  "requestType": "goAuto",
+  "scoringType": "main_scoring",
+  "optyTechInfo": null,
+  "participants": [
+    {
+      "type": "borrower",
+      "person": {
+        "sex": "MALE",
+        "contacts": [
+          {
+            "value": "7-(800)-000-42-27",
+            "contactType": "mobile_phone_first"
+          }
+        ],
+        "birthDate": "1968-10-21",
+        "fullNames": [
+          {
+            "isActual": true,
+            "lastName": "Оковый",
+            "firstName": "Виталий",
+            "middleName": "Лаврентьевич"
+          }
+        ],
+        "birthPlace": "Тамбовская Обл",
+        "clientType": "LEAD",
+        "spouseName": null,
+        "citizenship": [
+          "РФ"
+        ],
+        "spousalDate": null,
+        "maritalStatus": "married",
+        "publicOfficial": "noPdl",
+        "birthPlaceCountry": "Россия",
+        "spouseSocialStatuses": null
+      },
+      "incomes": [
+        {
+          "type": "personal",
+          "amount": 20000
+        }
+      ],
+      "jobInfo": {
+        "jobs": [
+          {
+            "inn": "4321324357",
+            "phones": [
+              "8-(111)-111-11-11"
+            ],
+            "endDate": null,
+            "industry": null,
+            "position": null,
+            "startDate": null,
+            "genRegDate": null,
+            "companyName": "ООо Рога и копыта",
+            "staffAmount": null
+          }
+        ],
+        "lastJobExperience": 15,
+        "totalJobExperience": null
+      },
+      "markers": null,
+      "property": null,
+      "clientIds": [
+        {
+          "type": "mdm",
+          "value": "214220476" //протестировать Если заполнен параметр application.mdm_lead_id, то передаем его. Если параметр application.mdm_lead_id не заполнен, то передаем mdm_client_id
+        }
+      ],
+      "documents": [
+        {
+          "number": "123456",
+          "series": "8754",
+          "issueDate": "2024-11-05",
+          "issuerCode": "135-855",
+          "issuerName": "г Москва",
+          "documentType": "document_type_passport_rus",
+          "expirationDate": null
+        },
+        {
+          "number": "1111111",
+          "series": "11",
+          "issueDate": null,
+          "issuerCode": null,
+          "issuerName": null,
+          "documentType": "document_type_overseas_passport_ru",
+          "expirationDate": null
+        }
+      ],
+      "childCount": null,
+      "educations": [
+        "education_academic"
+      ],
+      "addressInfo": {
+        "addresses": [
+          {
+            "qc": null,
+            "city": null,
+            "fias": "24eb72c9-7876-4a13-a8ad-128bbc4ae980",
+            "house": "6",
+            "qcGeo": null,
+            "region": "Пермский край",
+            "street": "Молодежная",
+            "country": "Россия",
+            "building": null,
+            "cityType": null,
+            "district": "Косинский",
+            "latitude": null,
+            "apartment": null,
+            "longitude": null,
+            "postalCode": "619430",
+            "qcComplete": null,
+            "settlement": "Подгора",
+            "streetType": "ул",
+            "addressType": "FACT",
+            "checkInDate": null,
+            "qcNearestPc": null,
+            "unparsedParts": null,
+            "settlementType": "д"
+          },
+          {
+            "qc": null,
+            "city": null,
+            "fias": null,
+            "house": null,
+            "qcGeo": null,
+            "region": null,
+            "street": null,
+            "country": null,
+            "building": null,
+            "cityType": null,
+            "district": null,
+            "latitude": null,
+            "apartment": null,
+            "longitude": null,
+            "postalCode": null,
+            "qcComplete": null,
+            "settlement": null,
+            "streetType": null,
+            "addressType": "WORK",
+            "checkInDate": null,
+            "qcNearestPc": null,
+            "unparsedParts": null,
+            "settlementType": null
+          },
+          {
+            "qc": null,
+            "city": null,
+            "fias": "24eb72c9-7876-4a13-a8ad-128bbc4ae980",
+            "house": "6",
+            "qcGeo": null,
+            "region": "Пермский край",
+            "street": "Молодежная",
+            "country": "Россия",
+            "building": null,
+            "cityType": null,
+            "district": "Косинский",
+            "latitude": null,
+            "apartment": null,
+            "longitude": null,
+            "postalCode": "619430",
+            "qcComplete": null,
+            "settlement": "Подгора",
+            "streetType": "ул",
+            "addressType": "REGISTER",
+            "checkInDate": "2023-10-23",
+            "qcNearestPc": null,
+            "unparsedParts": null,
+            "settlementType": "д"
+          }
+        ],
+        "jurFactEquality": null,
+        "regFactEquality": true,
+        "regPostEquality": null,
+        "factPostEquality": null
+      },
+      "visualRating": null,
+      "dependantCount": null,
+      "socialStatuses": [
+        "Work"
+      ],
+      "hasBkiAgreement": true
+    }
+  ],
+  "requestVersion": "2"
+}
