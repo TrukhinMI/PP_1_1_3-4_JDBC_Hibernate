@@ -1,293 +1,102 @@
-{
-  "opty": {
-    "optyIds": [
-      {
-        "optyId": "7e868161-b0a9-4634-9901-73d638cdd33e",
-        "systemId": "pos.autoconveyor"
-      }
-    ],
-    "division": {
-      "toId": "0001",
-      "tpId": "4dbe9f76-0bf7-4f2f-86a4-2ed7a4b3bb6b",
-      "kkoId": "006",
-      "tpZip": null,
-      "tpCity": null,
-      "tpCode": "770105661000003",
-      "tpName": null,
-      "kkoName": "BMW, ГК Инчкейп, г. Москва, Тест шоссе, д. 36",
-      "tpHouse": null,
-      "category": null,
-      "isBroker": false,
-      "tpCityCd": null,
-      "tpCorpus": null,
-      "tpOffice": null,
-      "tpRegion": null,
-      "tpStreet": null,
-      "tpCountry": null,
-      "tpStreetCd": null,
-      "tpProvinceId": null,
-      "tpProvinceName": null
-    },
-    "employee": {
-      "midName": "",
-      "category": null,
-      "lastName": "Автотест",
-      "firstName": "Автотестовый",
-      "employeeId": "autotest",
-      "organization": null
-    },
-    "optyType": null,
-    "insurances": [],
-    "isDeferred": null,
-    "attachments": [
-      {
-        "attachmentUrl": "URL",
-        "attachmentType": "client_documents"
-      },
-      {
-        "attachmentUrl": "URL",
-        "attachmentType": "additional_client_document"
-      },
-      {
-        "attachmentUrl": "URL",
-        "attachmentType": "personal_data_agreement"
-      }
-    ],
-    "createdDate": "2024-11-27 10:48:48",
-    "creditGoods": [
-      {
-        "hp": null,
-        "name": "Автомобиль",
-        "brand": "Volkswagen",
-        "count": 1,
-        "model": "Polo",
-        "price": 700000.01,
-        "country": null,
-        "vinAuto": null,
-        "category": "USED_UP_TO_5_YEAR_FOREIGN",
-        "autoStatus": "С пробегом",
-        "ownershipType": null,
-        "initialPayment": null,
-        "productionYear": "2020",
-        "requestedLimit": null
-      }
-    ],
-    "userChannel": null,
-    "loanProducts": [
-      {
-        "rate": {
-          "max": 25.5,
-          "min": 25.5
-        },
-        "maxAge": 69,
-        "maxSum": 2000000,
-        "minAge": 21,
-        "minSum": 100000,
-        "maxTerm": 84,
-        "minTerm": 12,
-        "productId": "880011ba-04b2-4557-a140-cbef861ce3b0",
-        "productCode": "AUTO1649_M12_60",
-        "productName": "Freedom",
-        "currencyCode": "RUB",
-        "supportProgram": null,
-        "rateChangeCondition": null,
-        "initPaymentPercentMax": 90.0,
-        "initPaymentPercentMin": 10.0,
-        "incomeConfirmationForm": null
-      }
-    ],
-    "optyOfficeId": null,
-    "optyProvince": null,
-    "creditPurpose": "Автокредитование",
-    "requestedRate": null,
-    "requestedTerm": 12,
-    "initialPayment": 99000.02,
-    "requestedAmount": 599999.99
-  },
-  "uuid": "7e868161-b0a9-4634-9901-73d638cdd33e",
-  "techType": null,
-  "requestType": "goAuto",
-  "scoringType": "main_scoring",
-  "optyTechInfo": null,
-  "participants": [
-    {
-      "type": "borrower",
-      "person": {
-        "sex": "MALE",
-        "contacts": [
-          {
-            "value": "7-(800)-000-42-27",
-            "contactType": "mobile_phone_first"
-          }
-        ],
-        "birthDate": "1968-10-21",
-        "fullNames": [
-          {
-            "isActual": true,
-            "lastName": "Оковый",
-            "firstName": "Виталий",
-            "middleName": "Лаврентьевич"
-          }
-        ],
-        "birthPlace": "Тамбовская Обл",
-        "clientType": "LEAD",
-        "spouseName": null,
-        "citizenship": [
-          "РФ"
-        ],
-        "spousalDate": null,
-        "maritalStatus": "married",
-        "publicOfficial": "noPdl",
-        "birthPlaceCountry": "Россия",
-        "spouseSocialStatuses": null
-      },
-      "incomes": [
-        {
-          "type": "personal",
-          "amount": 20000
+@Log4j2
+public class DbSteps {
+    @Step("Получаем данные заявки по номеру {number}")
+    public DTOCarLoanApplicationDate fetchApplicationData(String number) {
+        String query = DTOCarLoanApplicationDate.buildQuery(number);
+        Map<String, String> results = null; //Инициализируем как null
+        results = dbClient.executeQuerySingleResult(query);
+        if (results == null) {
+            log.info("Запрос вернул null для номера заявки: {}", number);
+            fail("Не удалось получить данные для номера заявки: " + number);
         }
-      ],
-      "jobInfo": {
-        "jobs": [
-          {
-            "inn": "4321324357",
-            "phones": [
-              "8-(111)-111-11-11"
-            ],
-            "endDate": null,
-            "industry": null,
-            "position": null,
-            "startDate": null,
-            "genRegDate": null,
-            "companyName": "ООо Рога и копыта",
-            "staffAmount": null
-          }
-        ],
-        "lastJobExperience": 15,
-        "totalJobExperience": null
-      },
-      "markers": null,
-      "property": null,
-      "clientIds": [
-        {
-          "type": "mdm",
-          "value": "214220476" //протестировать Если заполнен параметр application.mdm_lead_id, то передаем его. Если параметр application.mdm_lead_id не заполнен, то передаем mdm_client_id
-        }
-      ],
-      "documents": [
-        {
-          "number": "123456",
-          "series": "8754",
-          "issueDate": "2024-11-05",
-          "issuerCode": "135-855",
-          "issuerName": "г Москва",
-          "documentType": "document_type_passport_rus",
-          "expirationDate": null
-        },
-        {
-          "number": "1111111",
-          "series": "11",
-          "issueDate": null,
-          "issuerCode": null,
-          "issuerName": null,
-          "documentType": "document_type_overseas_passport_ru",
-          "expirationDate": null
-        }
-      ],
-      "childCount": null,
-      "educations": [
-        "education_academic"
-      ],
-      "addressInfo": {
-        "addresses": [
-          {
-            "qc": null,
-            "city": null,
-            "fias": "24eb72c9-7876-4a13-a8ad-128bbc4ae980",
-            "house": "6",
-            "qcGeo": null,
-            "region": "Пермский край",
-            "street": "Молодежная",
-            "country": "Россия",
-            "building": null,
-            "cityType": null,
-            "district": "Косинский",
-            "latitude": null,
-            "apartment": null,
-            "longitude": null,
-            "postalCode": "619430",
-            "qcComplete": null,
-            "settlement": "Подгора",
-            "streetType": "ул",
-            "addressType": "FACT",
-            "checkInDate": null,
-            "qcNearestPc": null,
-            "unparsedParts": null,
-            "settlementType": "д"
-          },
-          {
-            "qc": null,
-            "city": null,
-            "fias": null,
-            "house": null,
-            "qcGeo": null,
-            "region": null,
-            "street": null,
-            "country": null,
-            "building": null,
-            "cityType": null,
-            "district": null,
-            "latitude": null,
-            "apartment": null,
-            "longitude": null,
-            "postalCode": null,
-            "qcComplete": null,
-            "settlement": null,
-            "streetType": null,
-            "addressType": "WORK",
-            "checkInDate": null,
-            "qcNearestPc": null,
-            "unparsedParts": null,
-            "settlementType": null
-          },
-          {
-            "qc": null,
-            "city": null,
-            "fias": "24eb72c9-7876-4a13-a8ad-128bbc4ae980",
-            "house": "6",
-            "qcGeo": null,
-            "region": "Пермский край",
-            "street": "Молодежная",
-            "country": "Россия",
-            "building": null,
-            "cityType": null,
-            "district": "Косинский",
-            "latitude": null,
-            "apartment": null,
-            "longitude": null,
-            "postalCode": "619430",
-            "qcComplete": null,
-            "settlement": "Подгора",
-            "streetType": "ул",
-            "addressType": "REGISTER",
-            "checkInDate": "2023-10-23",
-            "qcNearestPc": null,
-            "unparsedParts": null,
-            "settlementType": "д"
-          }
-        ],
-        "jurFactEquality": null,
-        "regFactEquality": true,
-        "regPostEquality": null,
-        "factPostEquality": null
-      },
-      "visualRating": null,
-      "dependantCount": null,
-      "socialStatuses": [
-        "Work"
-      ],
-      "hasBkiAgreement": true
+        log.info("Данные заявки успешно получены для номера: {}", number);
+        return DTOCarLoanApplicationDate.convertMapToDTO(results);
     }
-  ],
-  "requestVersion": "2"
+
+    @Step("Проверяем наличие заявки в БД таблица application для номера: {number}")
+    public void assertApplicationExists(String number) {
+        String query = "SELECT COUNT(*) AS count FROM public.application WHERE \"number\" = '" + number + "';";
+        Map<String, String> result = dbClient.executeQuerySingleResult(query);
+        if (result == null || Integer.parseInt(result.get("count")) == 0) {
+            fail("Не удалось получить данные для номера заявки: " + number);
+        }
+    }
+
+    @Step("Удаляем заявку в БД для номера: {number}")
+    public void deleteApplicationInBd(String number, DTOCarLoanApplicationDate DTOCarLoanApplicationDate) {
+        assertApplicationExists(number); // Проверка наличия заявки
+        dbClient.executeQueryInsertUpdate("DELETE FROM public.application WHERE \"number\" = '" + DTOCarLoanApplicationDate.getNumber() + "';");
+        dbClient.executeQueryInsertUpdate("DELETE FROM public.applications_audit WHERE application_number = '" + DTOCarLoanApplicationDate.getNumber() + "';");
+        dbClient.executeQueryInsertUpdate("DELETE FROM public.ubl_result WHERE application_number = '" + DTOCarLoanApplicationDate.getNumber() + "';");
+        dbClient.executeQueryInsertUpdate("DELETE FROM public.scoring_decision WHERE application_id = '" + DTOCarLoanApplicationDate.getId() + "';");
+        log.info("Удалили строку из таблицы public.scoring_decision");
+        dbClient.executeQueryInsertUpdate("DELETE FROM public.scoring_command_manager WHERE application_id = '" + DTOCarLoanApplicationDate.getId() + "';");
+        log.info("Удалили строку из таблицы public.scoring_command_manager");
+        log.info("Удалили заявку номер {} из БД", number);
+    }
+
+    @Step("Получить название дилера из БД для номера заявки: {number}")
+    public String getDealerNameByApplicationNumber(String number) {
+        Map<String, String> dealerInfo = dbClient.executeQuerySingleResult("SELECT d.name FROM application a JOIN division d ON a.division_id = d.id WHERE a.number = '" + number + "';");
+        String dealerName = dealerInfo.values().iterator().next();
+        log.info("Получили название дилерского центра : {}", dealerName);
+        return dealerName;
+    }
+
+    @Step("Получить адресные данные из БД для номера заявки: {numberApplication}")
+    public String getAddressDataByApplicationNumber(String numberApplication, String type, String column) {
+        Map<String, String> addressData = dbClient.executeQuerySingleResult(
+                "SELECT ad." + column + " \n" +
+                        "FROM application ap\n" +
+                        "JOIN address ad ON ap.id = ad.application_id \n" +
+                        "WHERE ap.number = '" + numberApplication + "' AND ad.type = '" + type + "';");
+        String data = addressData.values().iterator().next();
+        log.info("Получили данные по адресу (колонка {}): {}", column, data);
+        return data;
+    }
+
+    @Step("Получили типа адресов из БД для номера заявки: {number}")
+    public Set<String> getAddressTypesByApplicationNumber(String number) {
+        List<Map<String, String>> addressRows = dbClient.executeQueryMultipleResult(
+                "select ad.type  from application ap \n" +
+                        "join address ad on ap.id = ad.application_id \n" +
+                        "where ap.number = '" + number + "';"
+        );
+        Set<String> addressTypes = addressRows.stream()
+                .map(row -> row.get("type"))
+                .collect(toSet());
+        log.info("Получи типы адресов: {}", addressTypes);
+        return addressTypes;
+    }
 }
+
+еще есть такой класс мне нужно внести изменения в метод
+@Step("Получили типа адресов из БД для номера заявки: {number}")
+    public Set<String> getAddressTypesByApplicationNumber(String number) {
+        List<Map<String, String>> addressRows = dbClient.executeQueryMultipleResult(
+                "select ad.type  from application ap \n" +
+                        "join address ad on ap.id = ad.application_id \n" +
+                        "where ap.number = '" + number + "';"
+        );
+        Set<String> addressTypes = addressRows.stream()
+                .map(row -> row.get("type"))
+                .collect(toSet());
+        log.info("Получи типы адресов: {}", addressTypes);
+        return addressTypes;
+    }
+
+так что бы данные я теперь доставал через DTO а не по запросу sql
+
+
+
+
+public void verifyHomeAndConstantRegistrationAddressTypesSavedInDatabase(@ClientsTypes(userType = MDM) DTOCarLoanClient client) {
+        authStep.accountAuth(client);
+        newApplicationStep.fillFieldsCorrectlyNewApplication(client);
+        generalInformationStep.fillFieldsCorrectlyWithoutClickNext(client, "LADA", "2024");
+        dbAsserts.verifyAddressTypesInDatabase(dbSteps.fetchApplicationData(newApplicationPage.getNumberApplication()),
+                Set.of("HOME", "CONSTANT_REGISTRATION"), dbSteps.getAddressTypesByApplicationNumber(newApplicationPage.getNumberApplication()));
+    }
+
+это тест где я использую метод getAddressTypesByApplicationNumber
+
